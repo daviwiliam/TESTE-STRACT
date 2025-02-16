@@ -3,6 +3,7 @@ from app.utils.request_helper import RequestHelper
 
 class AccountService:
 
+    @staticmethod
     def get_accounts(platform: str) -> dict:
 
         endpoint = "accounts"

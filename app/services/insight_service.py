@@ -3,6 +3,7 @@ from app.utils.request_helper import RequestHelper
 
 class InsightService:
 
+    @staticmethod
     def get_fields(platform: str) -> str:
 
         endpoint = "fields"
@@ -17,6 +18,7 @@ class InsightService:
 
         return fields[endpoint]
 
+    @staticmethod
     def get_insights(platform: str, account: dict, fields: str) -> dict:
 
         endpoint = "insights"

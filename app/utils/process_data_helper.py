@@ -3,7 +3,8 @@ from app.services.insight_service import InsightService
 
 class ProcessDataHelper:
 
-    def process_data(platform, accounts, fields, resume=False):
+    @staticmethod
+    def process_data(platform: str, accounts: list, fields: str, resume: bool = False) -> list:
 
         data = {"header": [], "body": []}
 
@@ -14,7 +15,7 @@ class ProcessDataHelper:
             if not insights:
                 return False
 
-            account_data = ProcessDataHelper.process_account_data(
+            account_data = ProcessDataHelper.process_account(
                 platform, account, insights
             )
             header = account_data[0]
@@ -22,7 +23,7 @@ class ProcessDataHelper:
             data["body"].extend(account_data)
 
         if resume:
-            data["body"] = ProcessDataHelper.process_resume_data(data["body"], platform)
+            data["body"] = ProcessDataHelper.process_resume(data["body"], platform)
 
         header.insert(0, "Plataform")
         header.insert(1, "Account Name")
@@ -30,8 +31,9 @@ class ProcessDataHelper:
         data["header"] = header
 
         return data
-
-    def process_account_data(platform, account, insights):
+    
+    @staticmethod
+    def process_account(platform: str, account: list, insights: list) -> list:
 
         processed = ProcessDataHelper.process_insights(insights)
 
@@ -41,7 +43,8 @@ class ProcessDataHelper:
 
         return processed
 
-    def process_insights(insights):
+    @staticmethod
+    def process_insights(insights: list) -> list:
 
         keys = [key for key in insights[0].keys() if key != "id"]
         rows = [keys]
@@ -52,7 +55,8 @@ class ProcessDataHelper:
 
         return rows
 
-    def process_resume_data(data, platform):
+    @staticmethod
+    def process_resume(data: dict, platform: str) -> dict:
 
         total_row = [None if isinstance(value, str) else 0 for value in data[0]]
 

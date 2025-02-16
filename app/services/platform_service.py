@@ -7,7 +7,8 @@ from app.utils.csv_helper import CsvHelper
 
 class PlatformService:
 
-    def get_platform_data(platform, resume=False):
+    @staticmethod
+    def get_platform_data(platform, resume=False) -> str:
 
         accounts = AccountService.get_accounts(platform)
 
@@ -26,6 +27,7 @@ class PlatformService:
 
         return CsvHelper.generate_csv(data)
 
+    @staticmethod
     def get_platforms() -> dict:
 
         endpoint = "platforms"

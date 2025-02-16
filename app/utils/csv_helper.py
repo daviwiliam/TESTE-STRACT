@@ -4,7 +4,8 @@ from io import StringIO
 
 class CsvHelper:
 
-    def generate_csv(data):
+    @staticmethod
+    def generate_csv(data: dict) -> str:
 
         output = StringIO()
         writer = csv.writer(output)

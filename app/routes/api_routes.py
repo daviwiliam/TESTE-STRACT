@@ -6,7 +6,7 @@ bp = Blueprint("api", __name__)
 
 
 @bp.route("/")
-def home():
+def home() -> Response:
     return jsonify(
         {
             "name": "Davi Wiliam",
@@ -17,7 +17,7 @@ def home():
 
 
 @bp.route("/<platform>")
-def platform_data(platform):
+def platform_data(platform: str) -> Response:
 
     csv = PlatformService.get_platform_data(platform)
 
@@ -28,7 +28,7 @@ def platform_data(platform):
 
 
 @bp.route("/<platform>/resumo")
-def resume_platform_data(platform):
+def resume_platform_data(platform: str) -> Response:
 
     resume = True
 
@@ -41,7 +41,7 @@ def resume_platform_data(platform):
 
 
 @bp.route("/geral")
-def geral_data():
+def geral_data() -> Response:
 
     csv = GeneralService.get_general_data()
 
@@ -52,7 +52,7 @@ def geral_data():
 
 
 @bp.route("/geral/resumo")
-def resume_geral_data():
+def resume_geral_data() -> Response:
 
     resume = True
 

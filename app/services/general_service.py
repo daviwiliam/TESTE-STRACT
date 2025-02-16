@@ -6,7 +6,8 @@ import pandas as pd
 
 class GeneralService:
     
-    def get_general_data(resume = False):
+    @staticmethod
+    def get_general_data(resume:bool = False) -> str:
 
         platforms = PlatformService.get_platforms()
 
@@ -36,7 +37,8 @@ class GeneralService:
 
         return csv
     
-    def standardize_headers(df):
+    @staticmethod
+    def standardize_headers(df) -> pd.DataFrame:
 
         column_map = {
             "region": "country", 
