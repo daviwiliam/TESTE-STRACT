@@ -15,4 +15,7 @@ class AccountService:
         if pagination:
             accounts = RequestHelper.get_outers_pages(accounts, endpoint, params)
 
-        return accounts[endpoint]
+        if endpoint in accounts:
+            return accounts[endpoint]
+
+        return False

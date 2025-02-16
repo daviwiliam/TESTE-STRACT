@@ -16,7 +16,10 @@ class InsightService:
         if pagination:
             fields = RequestHelper.get_outers_pages(fields, endpoint, params)
 
-        return fields[endpoint]
+        if endpoint in fields:
+            return fields[endpoint]
+
+        return False
 
     @staticmethod
     def get_insights(platform: str, account: dict, fields: str) -> dict:
@@ -36,4 +39,7 @@ class InsightService:
         if pagination:
             insights = RequestHelper.get_outers_pages(insights, endpoint, params)
 
-        return insights[endpoint]
+        if endpoint in insights:
+            return insights[endpoint]
+        
+        return False

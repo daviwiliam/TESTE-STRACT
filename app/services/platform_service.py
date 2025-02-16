@@ -38,4 +38,7 @@ class PlatformService:
         if pagination:
             platforms = RequestHelper.get_outers_pages(platforms, endpoint, False)
 
-        return platforms[endpoint]
+        if endpoint in platforms:
+            return platforms[endpoint]
+        
+        return False
