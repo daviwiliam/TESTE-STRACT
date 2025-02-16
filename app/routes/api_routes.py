@@ -62,7 +62,8 @@ def resume_geral_data() -> Response:
         return Response(csv, mimetype="text/csv")
     else:
         return jsonify({"error": "Nenhum dado encontrado"}), 404
-    
+
+
 @bp.route("/favicon.ico")
 def favicon():
     return "", 204
